@@ -1,10 +1,11 @@
 /* The Fourth Player — landing interactions */
 (function () {
+  var LANG = /^pt/i.test(document.documentElement.lang || "") ? "pt" : "en";
   // ─── WhatsApp link wiring ───────────────────────────────
   // TODO: replace with your real WhatsApp Business number (international, digits only).
   var WA_NUMBER = "351960393194"; // The Fourth Player matchmaking bot (where players message to find a game)
   // Default opener for on-page CTA buttons.
-  var WA_TEXT = encodeURIComponent("Vamos, let the fun begin 🎾");
+  var WA_TEXT = encodeURIComponent(LANG === "pt" ? "Olá! Quero encontrar o meu quarto jogador 🎾" : "Vamos, let the fun begin 🎾");
   var waHref = WA_NUMBER
     ? "https://wa.me/" + WA_NUMBER + "?text=" + WA_TEXT
     : "https://wa.me/?text=" + WA_TEXT; // opens WhatsApp with the message; user picks the chat
@@ -15,7 +16,7 @@
   });
 
   // QR code opener.
-  var QR_TEXT = encodeURIComponent("Vamos, let the fun begin 🎾");
+  var QR_TEXT = WA_TEXT;
   document.querySelectorAll('[data-wa-qr]').forEach(function (a) {
     a.setAttribute('href', "https://wa.me/" + WA_NUMBER + "?text=" + QR_TEXT);
     a.setAttribute('target', '_blank');
@@ -66,13 +67,21 @@
     reveals.forEach(function (el) { el.classList.add('in'); });
   }
   // ─── rotating subtitle ──────────────────────────────────
-  var subtitles = [
+  var subtitlesPT = [
+    "Não devias precisar de contactar 6 pessoas só para teres quatro em campo. Envia uma mensagem e nós encontramos o teu quarto jogador.",
+    "Encontra o teu quarto jogador. Mantém o teu número. Sem app, sem confusão.",
+    "Jogadores de padel e ténis em Lisboa, emparelhados no WhatsApp. O teu número só é partilhado quando estiveres pronto.",
+    "Uma mensagem para encontrar parceiro. Nenhuma app para descarregar. O teu número só é partilhado quando disseres que sim.",
+    "O campo está reservado. O grupo de WhatsApp é um caos. Há uma forma melhor, e já está no teu telemóvel."
+  ];
+  var subtitlesEN = [
     "You shouldn't need to text 6 people just to fill a court. Send one message. We find your fourth.",
     "Find your fourth. Keep your number. No app, no drama.",
     "Padel and tennis players in Lisbon, matched on WhatsApp. Your number stays yours until you're ready.",
     "One message to find a partner. Zero apps to download. Your number shared only when you say yes.",
     "The padel court is booked. The group chat is chaos. There's a better way — and it's already on your phone."
   ];
+  var subtitles = LANG === "pt" ? subtitlesPT : subtitlesEN;
   var subEl = document.getElementById('rotating-subtitle');
   if (subEl) {
     var subIdx = 0;
