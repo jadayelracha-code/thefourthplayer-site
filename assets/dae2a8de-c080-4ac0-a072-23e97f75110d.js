@@ -5,7 +5,7 @@
   // TODO: replace with your real WhatsApp Business number (international, digits only).
   var WA_NUMBER = "351960393194"; // The Fourth Player matchmaking bot (where players message to find a game)
   // Default opener for on-page CTA buttons.
-  var WA_TEXT = encodeURIComponent(LANG === "pt" ? "Olá! Quero encontrar o meu quarto jogador 🎾" : "Vamos, let the fun begin 🎾");
+  var WA_TEXT = encodeURIComponent(LANG === "pt" ? "Vamos! Preciso de um quarto jogador 🎾" : "Vamos, let the fun begin 🎾");
   var waHref = WA_NUMBER
     ? "https://wa.me/" + WA_NUMBER + "?text=" + WA_TEXT
     : "https://wa.me/?text=" + WA_TEXT; // opens WhatsApp with the message; user picks the chat
